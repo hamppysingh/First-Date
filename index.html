@@ -466,28 +466,42 @@ document.addEventListener("click", function startMusic() {
 
 }, { once: true });
 
-const targetDate=new Date();
-targetDate.setDate(targetDate.getDate()+7);
+const targetDate = new Date("2026-06-27T00:00:00");
 
 function updateCountdown(){
 
-    const now=new Date();
-    const diff=targetDate-now;
+    const now = new Date();
+    const diff = targetDate - now;
 
-    const days=Math.floor(diff/(1000*60*60*24));
-    const hrs=Math.floor(
-        diff%(1000*60*60*24)/(1000*60*60)
+    if(diff <= 0){
+        document.getElementById('countdown').innerHTML =
+            "❤️ It's Date Time! ❤️";
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    const hrs = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) /
+        (1000 * 60 * 60)
     );
 
-    const mins=Math.floor(
-        diff%(1000*60*60)/(1000*60)
+    const mins = Math.floor(
+        (diff % (1000 * 60 * 60)) /
+        (1000 * 60)
     );
 
-    document.getElementById('countdown').innerHTML=
-        `⏳ Countdown To Our Date:
-        ${days} Days ${hrs} Hours ${mins} Minutes`;
+    const secs = Math.floor(
+        (diff % (1000 * 60)) /
+        1000
+    );
+
+    document.getElementById('countdown').innerHTML =
+        `❤️ Countdown To Our Date ❤️<br>
+         📅 27 June 2026<br>
+         ⏳ ${days} Days ${hrs} Hours ${mins} Minutes ${secs} Seconds`;
 }
-
+    
 const YOUR_NAME = "Kanji";
 
 let pendingFormData = null;
