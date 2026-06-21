@@ -387,7 +387,7 @@ audio{
     </div> 
 </div>
 
-<audio id="bgMusic" loop></audio>
+<audio id="bgMusic" src="love_song.mp3" loop></audio>
 <script>
 
 /*
@@ -404,14 +404,6 @@ YOUR_PUBLIC_KEY
 YOUR_SERVICE_ID
 YOUR_TEMPLATE_ID
 */
-
-
-const songs = [
-    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3",
-    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3",
-    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3",
-    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3"
-];
 
 const heartsContainer=document.getElementById('hearts');
 
@@ -459,15 +451,10 @@ function createConfetti(){
         },3000);
     }
 }
-
 const audio = document.getElementById("bgMusic");
-
-// Random song selection
-audio.src = songs[Math.floor(Math.random() * songs.length)];
 
 let musicStarted = false;
 
-// Start music on first hover anywhere on page
 document.body.addEventListener("mouseenter", () => {
 
     if (!musicStarted) {
@@ -476,7 +463,6 @@ document.body.addEventListener("mouseenter", () => {
         audio.volume = 0;
         audio.play();
 
-        // Romantic fade-in effect
         const fadeIn = setInterval(() => {
             if (audio.volume < 0.95) {
                 audio.volume += 0.05;
