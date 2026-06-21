@@ -451,26 +451,18 @@ function createConfetti(){
         },3000);
     }
 }
+
 const audio = document.getElementById("bgMusic");
 
-let musicStarted = false;
+document.addEventListener("click", function startMusic() {
 
-document.body.addEventListener("mouseenter", () => {
+    audio.volume = 0.5;
 
-    if (!musicStarted) {
-        musicStarted = true;
+    audio.play().catch(err => {
+        console.log("Audio blocked:", err);
+    });
 
-        audio.volume = 0;
-        audio.play();
-
-        const fadeIn = setInterval(() => {
-            if (audio.volume < 0.95) {
-                audio.volume += 0.05;
-            } else {
-                clearInterval(fadeIn);
-            }
-        }, 200);
-    }
+    document.removeEventListener("click", startMusic);
 
 }, { once: true });
 
@@ -606,5 +598,3 @@ setInterval(updateCountdown,60000);
 
 </body>
 </html>
-
-
